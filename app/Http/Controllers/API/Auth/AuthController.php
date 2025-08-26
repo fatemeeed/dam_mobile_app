@@ -10,17 +10,14 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:users,email',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+        
 
         $user = User::create([
             'name' => $request->name,
-            'email' => $request->email,
+            'email' => $request->mobile_number,
+            'birth_date' => $request->birth_date,
             'password' => bcrypt($request->password),
         ]);
 
