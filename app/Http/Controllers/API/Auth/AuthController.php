@@ -11,11 +11,10 @@ use App\Http\Requests\Api\Auth\RegisterRequest;
 
 class AuthController extends Controller
 {
-    public function register(RegisterRequest $request)
+    public function register(Request $request)
     {
-        
+        return response()->json($request->all());
 
-        die('hi');
         $user = User::create([
             'name' => $request->name,
             'email' => $request->mobile_number,
