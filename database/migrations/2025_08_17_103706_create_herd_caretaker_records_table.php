@@ -13,18 +13,14 @@ return new class extends Migration
     {
         Schema::create('herd_caretaker_records', function (Blueprint $table) {
             $table->id();
-
             $table->foreignId('herd_id')->constrained('herds')->cascadeOnDelete();
             $table->foreignId('caretaker_id')->constrained('caretakers')->cascadeOnDelete();
-
             $table->date('start_date');
             $table->date('end_date')->nullable();
-
             $table->integer('animal_count_at_start')->nullable();
             $table->integer('animal_count_at_end')->nullable();
-
-            $table->text('notes')->nullable();
-
+            $table->json('animal_types')->nullable();
+            $table->text('description')->nullable();
             $table->timestamp('created_at')->useCurrent();
         });
     }

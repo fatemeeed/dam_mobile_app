@@ -11,14 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // چوپان
-        Schema::create('caretakers', function (Blueprint $table) {
+        Schema::create('vaccinations_tables', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('phone');
-            $table->foreignId('herd_id')->constrained('herds')->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            
             $table->timestamps();
         });
     }
@@ -28,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('caretakers');
+        Schema::dropIfExists('vaccinations_tables');
     }
 };

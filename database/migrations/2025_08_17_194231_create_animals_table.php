@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('animals', function (Blueprint $table) {
             $table->id();
-            $table->string('tag_number')->unique();
-            $table->enum('gender', ['male', 'female']);
-            $table->date('birth_date');
-            $table->string('breed');
-            $table->foreignId('herd_id')->constrained('herds')->cascadeOnDelete();
-            $table->foreignId('caretaker_id')->nullable()->constrained('caretakers')->nullOnDelete();
+            $table->foreignId('financial_year_id')->constrained('financial_years')->cascadeOnDelete();
+            $table->foreignId('herd_id')->constrained()->onDelete('cascade'); // گله مربوطه
+            $table->string('animal_type'); // نوع دام (گوسفند، بز، ...)
+            $table->string('start_tag'); // شماره شروع (مثلا 1000)
+            $table->string('end_tag');   // شماره پایان (مثلا 1036)
+            $table->unsignedInteger('count'); // تعداد کل (مثلا 37)
+            $table->date('tag_date')->nullable(); // تاریخ پلاک‌گذاری
             $table->timestamps();
         });
     }

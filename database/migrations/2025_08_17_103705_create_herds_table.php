@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('event_types', function (Blueprint $table) {
+        Schema::create('herds', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('category', ['increase', 'decrease']);
+            $table->string('location');
+            $table->foreignId('financial_year_id')->constrained('financial_years')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('event_types');
+        Schema::dropIfExists('herds');
     }
 };
