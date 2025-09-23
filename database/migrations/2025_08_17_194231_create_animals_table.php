@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('financial_year_id')->constrained('financial_years')->cascadeOnDelete();
             $table->foreignId('herd_id')->constrained()->onDelete('cascade'); // گله مربوطه
-            $table->string('animal_type'); // نوع دام (گوسفند، بز، ...)
+            $table->foreignId('animal_type_id')->constrained('animal_types')->onDelete('cascade');
             $table->string('start_tag'); // شماره شروع (مثلا 1000)
             $table->string('end_tag');   // شماره پایان (مثلا 1036)
             $table->unsignedInteger('count'); // تعداد کل (مثلا 37)

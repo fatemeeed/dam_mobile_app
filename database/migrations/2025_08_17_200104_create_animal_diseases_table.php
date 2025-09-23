@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('animal_diseases', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('animal_id')->constrained('animals')->cascadeOnDelete();
+            $table->string('tag')->nullable();
             $table->foreignId('disease_id')->constrained('diseases')->cascadeOnDelete();
             $table->date('diagnosis_date');
-            $table->date('recovery_date')->nullable();
-            $table->text('notes')->nullable();
+            $table->foreignId('medicine_id')->constrained()->onDelete('cascade'); // دارو
+            $table->text('description')->nullable();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

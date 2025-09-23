@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('reference_number')->nullable();
             $table->date('transaction_date');
             $table->text('description');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+
             $table->timestamps();
         });
     }

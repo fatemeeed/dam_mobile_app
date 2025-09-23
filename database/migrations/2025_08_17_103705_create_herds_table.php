@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('herds', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('location');
+            $table->string('location')->nullable();
             $table->foreignId('financial_year_id')->constrained('financial_years')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();

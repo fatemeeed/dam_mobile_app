@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
+
+        //بیماری ها
         Schema::create('diseases', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('symptoms');
+            $table->text('symptoms')->comment('علائم');
             $table->timestamps();
         });
     }

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('reference_number')->nullable();
             $table->text('description');
             $table->date('transaction_date');
-            $table->tinyInteger('payment_status')->default('0')->comment(['0'=>'notpayment' , '1'=>'payment']);
+            $table->tinyInteger('payment_status')->default('0')->comment("['0'=>'notpayment' , '1'=>'payment']");
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
