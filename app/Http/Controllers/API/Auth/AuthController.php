@@ -15,10 +15,12 @@ class AuthController extends Controller
     {
         // return response()->json($request->all());
 
+        
+
         $user = User::create([
             'name' => $request->name,
             'mobile_number' => $request->mobile_number,
-            'birth_date' => $request->birth_date,
+            'birth_date' => "یک شنبه 2 مهر 1396",
             'password' => bcrypt($request->password),
             'role'    =>  'user'
         ]);
@@ -31,6 +33,7 @@ class AuthController extends Controller
             'user' => $user,
             'token' => $token
         ], 201);
+
     }
 
     // ورود کاربر
