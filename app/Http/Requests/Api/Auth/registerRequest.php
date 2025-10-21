@@ -24,9 +24,10 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'mobile_number' => 'required|digits:11|unique:users',
+            'mobile_number' => 'required|digits:11|unique:users,mobile_number',
+            // اگر می‌خواهی تایید رمز هم بخوای:
             'password' => ['required', Password::min(8), 'confirmed'],
-            'birth_date'  => 'required'
+            'birth_date' => 'required|date', // فرمت YYYY-MM-DD
         ];
     }
 }

@@ -11,16 +11,15 @@ use App\Http\Requests\Api\Auth\RegisterRequest;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
         // return response()->json($request->all());
 
-        
 
         $user = User::create([
             'name' => $request->name,
             'mobile_number' => $request->mobile_number,
-            'birth_date' => "یک شنبه 2 مهر 1396",
+            'birth_date' => $request->birth_date,
             'password' => bcrypt($request->password),
             'role'    =>  'user'
         ]);
