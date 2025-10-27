@@ -11,8 +11,10 @@ class FinancialYearController extends Controller
 {
     public function index()
     {
-        $years = FinancialYear::where('user_id', Auth::id())->latest()->get();
+       $user=auth('sanctum')->user();
+        $years = FinancialYear::where('user_id', $user->id)->get();
 
+        
         return response()->json([
             'success' => true,
             'data' => $years,

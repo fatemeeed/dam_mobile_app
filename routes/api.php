@@ -8,11 +8,11 @@ use App\Http\Controllers\Api\Home\FinancialYearController;
 Route::prefix('auth')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
-    Route::middleware('auth:sanctum')->post('logout', [AuthController::class, 'logout']);
+    Route::middleware('auth:api')->post('logout', [AuthController::class, 'logout']);
 });
 
-Route::middleware('auth:sanctum')->group(function () {
-
+Route::group(['middleware' => 'auth:api'], function() {
+    // dd('hi');
 
     Route::prefix('financial-years')->group(function(){
 
