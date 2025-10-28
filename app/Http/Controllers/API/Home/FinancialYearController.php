@@ -11,6 +11,7 @@ class FinancialYearController extends Controller
 {
     public function index()
     {
+        
        $user=auth('sanctum')->user();
         $years = FinancialYear::where('user_id', $user->id)->get();
 

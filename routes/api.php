@@ -11,17 +11,9 @@ Route::prefix('auth')->group(function () {
     Route::middleware('auth:api')->post('logout', [AuthController::class, 'logout']);
 });
 
-Route::group(['middleware' => 'auth:api'], function() {
-    // dd('hi');
+Route::middleware('auth:sanctum')->group(function () {
 
-    Route::prefix('financial-years')->group(function(){
-
-        Route::post('/store',[FinancialYearController::class,'store']);
-        Route::get('/',[FinancialYearController::class,'index']);
-
-    });
-    // Route::get('/dashboard', [DashboardController::class, 'index']);
-    // Route::post('/posts', [PostController::class, 'store']);
-    // Route::put('/profile', [UserController::class, 'update']);
-    // و ... بقیه روت‌هایی که فقط باید کاربر لاگین‌کرده ببینه
+    Route::get('/financial-years', [FinancialYearController::class, 'index']);
+    Route::post('/financial-years/store', [FinancialYearController::class, 'store']);
 });
+    // dd('hi');
