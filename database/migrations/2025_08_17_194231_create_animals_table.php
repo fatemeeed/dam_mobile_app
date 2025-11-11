@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('animals', function (Blueprint $table) {
             $table->id();
             $table->foreignId('financial_year_id')->constrained('financial_years')->cascadeOnDelete();
-            $table->foreignId('herd_id')->constrained()->onDelete('cascade'); // گله مربوطه
+            $table->foreignId('flock_id')->constrained()->onDelete('cascade'); // گله مربوطه
             $table->foreignId('animal_type_id')->constrained('animal_types')->onDelete('cascade');
             $table->string('start_tag'); // شماره شروع (مثلا 1000)
             $table->string('end_tag');   // شماره پایان (مثلا 1036)

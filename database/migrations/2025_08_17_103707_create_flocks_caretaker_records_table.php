@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('herd_caretaker_records', function (Blueprint $table) {
+        Schema::create('flocks_caretaker', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('herd_id')->constrained('herds')->cascadeOnDelete();
+            $table->foreignId('flock_id')->constrained('flocks')->cascadeOnDelete();
             $table->foreignId('caretaker_id')->constrained('caretakers')->cascadeOnDelete();
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->integer('animal_count_at_start')->nullable();
-            $table->integer('animal_count_at_end')->nullable();
-            $table->foreignId('animal_type_id')->constrained('animal_types')->onDelete('cascade');
-            $table->unsignedInteger('count')->default(0); 
+            $table->integer('animal_currect_count')->nullable();
             $table->text('description')->nullable();
             $table->timestamp('created_at')->useCurrent();
         });

@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('herds', function (Blueprint $table) {
+        Schema::create('flocks_change_reasons', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('location')->nullable();
-            $table->foreignId('financial_year_id')->constrained('financial_years')->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->enum('type', ['increase', 'decrease']);
+            $table->string('title', 100);
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('herds');
+        Schema::dropIfExists('flocks_change_reasons');
     }
 };

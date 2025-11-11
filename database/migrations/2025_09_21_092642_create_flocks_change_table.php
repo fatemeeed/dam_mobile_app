@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('herd_reductions', function (Blueprint $table) {
+        Schema::create('flocks_change', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('herd_id')->constrained()->onDelete('cascade'); // نام گله
+            $table->foreignId('flock_id')->constrained('flocks')->onDelete('cascade'); // نام گله
+            $table->foreignId('caretaker_id')->constrained('caretakers')->cascadeOnDelete();
+            $table->date('change_date');
+            $table->enum('change_type', ['initial', 'increase', 'decrease']);
+            $table->foreignId('flock_change_reasons_id')->nullable()->constrained('flocks_change_reasons')->onDelete('cascade'); // نوع دام
+            $table->text('reason')->nullable(); // علت
             $table->foreignId('animal_type_id')->constrained('animal_types')->onDelete('cascade'); // نوع دام
-            $table->date('reduction_date'); // تاریخ کاهش
-            $table->enum('reduction_type', ['death', 'slaughter', 'halal_bor', 'missing']); // نوع کاهش
-            $table->string('reason')->nullable(); // علت
-            $table->unsignedInteger('count'); // تعداد کاهش
+            $table->unsignedInteger('count'); 
             $table->text('description')->nullable(); // توضیح بیشتر
             $table->timestamps();
         });

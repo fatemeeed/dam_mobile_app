@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // چوپان
-        Schema::create('caretakers', function (Blueprint $table) {
+        Schema::create('flocks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('phone')->nullable();
-            $table->foreignId('flock_id')->constrained('flocks')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->date('start_date')->after('location');
+            $table->string('location')->nullable();
+            $table->foreignId('financial_year_id')->constrained('financial_years')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('caretakers');
+        Schema::dropIfExists('herds');
     }
 };

@@ -20,6 +20,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('flocks')->group(function(){
 
        Route::get('/', [FlocksController::class, 'index']);
+       Route::get('/store', [FlocksController::class, 'store']);
+       
 
     });
 });

@@ -17,11 +17,6 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     Route::middleware(['auth'])->group(function () {
 
         Route::get('/Dashbord', [AdminHomeController::class, 'index'])->name('admin.home');
-        
-
-
-
-
         Route::get('/logout', [LoginController::class, 'logout'])->name('admin.logout');
     });
 });
