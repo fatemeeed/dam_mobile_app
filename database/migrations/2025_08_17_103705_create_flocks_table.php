@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('flocks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->date('start_date')->after('location');
+            $table->date('start_date');
             $table->string('location')->nullable();
             $table->foreignId('financial_year_id')->constrained('financial_years')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('herds');
+        Schema::dropIfExists('flocks');
     }
 };

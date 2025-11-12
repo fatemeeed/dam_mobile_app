@@ -20,4 +20,9 @@ class FlocksController extends Controller
 
         ]);
     }
+
+    public function store()
+    {
+        
+    }
 }
