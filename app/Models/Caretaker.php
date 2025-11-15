@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Caretaker extends Model
 {
-    protected $guarded = [];
+    protected $guarded = ['id'];
 }

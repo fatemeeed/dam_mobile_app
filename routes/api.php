@@ -4,9 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\Auth\AuthController;
 use App\Http\Controllers\API\Home\FlocksController;
+use App\Http\Controllers\API\Home\CaretakerController;
 use App\Http\Controllers\API\Home\FetchAnimalsController;
 use App\Http\Controllers\Api\Home\FinancialYearController;
-use App\Http\Controllers\API\Home\FetchCaretakerController;
+use App\Http\Controllers\API\Home\FetchAnimalTypesController;
 
 Route::prefix('auth')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
@@ -20,18 +21,18 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/financial-years/store', [FinancialYearController::class, 'store']);
 
 
+    Route::prefix('caretaker')->group(function () {
 
-    
+        Route::get('/fetch-caretaker', [CaretakerController::class, 'fetch']);
+        Route::get('/store', [CaretakerController::class, 'store']);
+    });
 
-    Route::prefix('flocks')->group(function(){
+    Route::prefix('flocks')->group(function () {
 
-        Route::get('/fetch-caretaker', [FetchCaretakerController::class, 'index']);
-        Route::get('/fetch-animalType', [FetchAnimalsController::class, 'index']);
 
-       Route::get('/', [FlocksController::class, 'index']);
-       Route::get('/store', [FlocksController::class, 'store']);
-       
+        Route::get('/fetch-animalType', [FetchAnimalTypesController::class, 'index']);
 
+        Route::get('/', [FlocksController::class, 'index']);
+        Route::get('/store', [FlocksController::class, 'store']);
     });
 });
-   
