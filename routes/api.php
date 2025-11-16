@@ -24,7 +24,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('caretaker')->group(function () {
 
         Route::get('/fetch-caretaker', [CaretakerController::class, 'fetch']);
-        Route::get('/store', [CaretakerController::class, 'store']);
+        Route::post('/store', [CaretakerController::class, 'store']);
     });
 
     Route::prefix('flocks')->group(function () {

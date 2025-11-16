@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone')->nullable();
-            $table->foreignId('flock_id')->constrained('flocks')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('flock_id')->nullable()->constrained('flocks')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

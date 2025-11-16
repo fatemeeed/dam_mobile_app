@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\Home;
 use App\Models\Caretaker;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CaretakerController extends Controller
 {
@@ -25,14 +26,19 @@ class CaretakerController extends Controller
         $request->validate(
             [
                 'name' => 'required|string|max:200',
-                'start_date'  => 'required|date',
 
             ]
         );
 
-        $result=Caretaker::create([
-            'name' =>  $request->name ,
-            ''
+        $caretaker = Caretaker::create([
+            'name' =>  $request->name,
+            'user_id' =>  Auth::id()
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'سر‍‍\رست  با موفقیت ثبت شد ',
+            'data' => $caretaker,
         ]);
     }
 }
